@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layouts/default-head :: head"></head>
+
+<body>
+    <nav th:replace="layouts/menu :: menu"></nav>
+
+    <div class="container">
+        <h2>Dashboard</h2>
+        <hr>
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <th>Defect ID</th>
+                <th>Description</th>
+                <th>Assigned To</th>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr th:each="tempDefect : ${defectList}">
+                    <td th:text="${tempDefect.bugId}" />
+                    <td th:text="${tempDefect.description}" />
+                    <td th:text="${tempDefect.assignedTo}" />
+                    <td th:text="${tempDefect.project}" />
+                    <td th:text="${tempDefect.status}" />
+                    <td>
+                        <a th:href="@{/updateDefect/{id}(id=${tempDefect.id})}" class="btn btn-success">Update</a>
+                        <a sec:authorize="hasRole('MANAGER')" th:href="@{/removeDefect/{id}(id=${tempDefect.id})}"
+                            class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="layouts/default-script :: script"></div>
+</body>
+
+</html>
