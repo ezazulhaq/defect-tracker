@@ -94,4 +94,82 @@ public class WelcomeController {
         return "home";
     }
 
+    @GetMapping(value = "/sortByAssignedTo")
+    public String sortByAssignedTo(Model theModel) {
+
+        List<DefectList> dList;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean authorized = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"));
+
+        if (authorized)
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .sorted((i, j) -> i.getAssignedTo().compareTo(j.getAssignedTo()))
+                    .collect(Collectors.toList());
+        else
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
+                    .sorted((i, j) -> i.getAssignedTo().compareTo(j.getAssignedTo()))
+                    .collect(Collectors.toList());
+
+        theModel.addAttribute("defectList", dList);
+
+        return "home";
+    }
+
+    @GetMapping(value = "/sortByProject")
+    public String sortByProject(Model theModel) {
+
+        List<DefectList> dList;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean authorized = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"));
+
+        if (authorized)
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .sorted((i, j) -> i.getProject().compareTo(j.getProject()))
+                    .collect(Collectors.toList());
+        else
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
+                    .sorted((i, j) -> i.getProject().compareTo(j.getProject()))
+                    .collect(Collectors.toList());
+
+        theModel.addAttribute("defectList", dList);
+
+        return "home";
+    }
+
+    @GetMapping(value = "/sortByStatus")
+    public String sortByStatus(Model theModel) {
+
+        List<DefectList> dList;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean authorized = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"));
+
+        if (authorized)
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .sorted((i, j) -> i.getStatus().compareTo(j.getStatus()))
+                    .collect(Collectors.toList());
+        else
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
+                    .sorted((i, j) -> i.getStatus().compareTo(j.getStatus()))
+                    .collect(Collectors.toList());
+
+        theModel.addAttribute("defectList", dList);
+
+        return "home";
+    }
+
 }

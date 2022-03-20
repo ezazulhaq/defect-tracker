@@ -18,17 +18,32 @@
 
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
-                <th>
+                <th class="col col-sm-2">
                     Defect ID
                     <a th:href="@{/sortByDefectId}" class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
                 <th>Description</th>
-                <th>Assigned To</th>
-                <th>Project</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th class="col col-sm-2">
+                    Assigned To
+                    <a th:href="@{/sortByAssignedTo}" class="btn btn-secondary btn-sm">
+                        <span class="bi bi-caret-down-fill"></span>
+                    </a>
+                </th>
+                <th class="col col-sm-2">
+                    Project
+                    <a th:href="@{/sortByProject}" class="btn btn-secondary btn-sm">
+                        <span class="bi bi-caret-down-fill"></span>
+                    </a>
+                </th>
+                <th class="col col-sm-2">
+                    Status
+                    <a th:href="@{/sortByStatus}" class="btn btn-secondary btn-sm">
+                        <span class="bi bi-caret-down-fill"></span>
+                    </a>
+                </th>
+                <th class="col-2">Action</th>
             </thead>
             <tbody>
                 <tr th:each="tempDefect : ${defectList}">
