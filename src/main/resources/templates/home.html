@@ -10,6 +10,11 @@
         <h2>Dashboard</h2>
         <hr>
 
+        <div class="input-group my-3" style="width: 250px;">
+            <input type="text" class="form-control" placeholder="Search With Defect ID">
+            <a th:href="@{/searchId}" class="btn btn-secondary bi bi-search"></a>
+        </div>
+
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <th>Defect ID</th>
