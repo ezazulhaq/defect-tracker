@@ -7,12 +7,11 @@
     <nav th:replace="layouts/menu :: menu"></nav>
 
     <div class="container">
-        <h2>Dashboard</h2>
-        <hr>
+        <h2 class="my-3">Dashboard</h2>
 
         <form th:action="@{/searchId}" method="get">
             <div class="input-group my-3" style="width: 250px;">
-                <input type="text" th:name="search" class="form-control" placeholder="Search With Defect ID">
+                <input type="text" th:name="search" class="form-control mr-1" placeholder="Search With Defect ID">
                 <button type="submit" class="btn btn-secondary bi bi-search"></button>
             </div>
         </form>
