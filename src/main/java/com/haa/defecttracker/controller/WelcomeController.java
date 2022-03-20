@@ -44,7 +44,7 @@ public class WelcomeController {
     }
 
     @GetMapping(value = "/searchId")
-    public String getMethodName(@RequestParam(value = "search") String search, Model theModel) {
+    public String getBySearchId(@RequestParam(value = "search") String search, Model theModel) {
 
         if (search.equalsIgnoreCase(""))
             search = "0";
