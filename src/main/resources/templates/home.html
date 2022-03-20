@@ -27,7 +27,8 @@
                 <th>Description</th>
                 <th class="col col-sm-2">
                     Assigned To
-                    <a th:href="@{/sortByAssignedTo}" class="btn btn-secondary btn-sm">
+                    <a sec:authorize="hasRole('MANAGER')" th:href="@{/sortByAssignedTo}"
+                        class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
