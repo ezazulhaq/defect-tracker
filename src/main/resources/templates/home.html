@@ -18,7 +18,12 @@
 
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
-                <th>Defect ID</th>
+                <th>
+                    Defect ID
+                    <a th:href="@{/sortByDefectId}" class="btn btn-secondary btn-sm">
+                        <span class="bi bi-caret-down-fill"></span>
+                    </a>
+                </th>
                 <th>Description</th>
                 <th>Assigned To</th>
                 <th>Project</th>

@@ -68,4 +68,30 @@ public class WelcomeController {
         return "home";
     }
 
+    @GetMapping(value = "/sortByDefectId")
+    public String sortByDefectId(Model theModel) {
+
+        List<DefectList> dList;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean authorized = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"));
+
+        if (authorized)
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .sorted((i, j) -> i.getBugId().compareTo(j.getBugId()))
+                    .collect(Collectors.toList());
+        else
+            dList = defectListService.getDefectList()
+                    .stream()
+                    .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
+                    .sorted((i, j) -> i.getBugId().compareTo(j.getBugId()))
+                    .collect(Collectors.toList());
+
+        theModel.addAttribute("defectList", dList);
+
+        return "home";
+    }
+
 }
