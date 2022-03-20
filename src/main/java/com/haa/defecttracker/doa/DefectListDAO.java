@@ -15,4 +15,6 @@ public interface DefectListDAO {
 
     void removeDefect(Long id);
 
+    List<DefectList> getDefectList(Long defectId);
+
 }

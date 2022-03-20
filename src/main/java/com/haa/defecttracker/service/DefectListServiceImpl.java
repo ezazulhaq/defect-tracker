@@ -41,4 +41,9 @@ public class DefectListServiceImpl implements DefectListService {
         defectListDAO.removeDefect(id);
     }
 
+    @Override
+    public List<DefectList> getDefectList(Long defectId) {
+        return defectListDAO.getDefectList(defectId);
+    }
+
 }

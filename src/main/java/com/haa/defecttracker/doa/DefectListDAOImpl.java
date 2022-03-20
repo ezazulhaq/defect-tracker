@@ -35,4 +35,12 @@ public class DefectListDAOImpl implements DefectListDAO {
         defectListRepository.deleteById(id);
     }
 
+    @Override
+    public List<DefectList> getDefectList(Long defectId) {
+        if (defectId == 0)
+            return defectListRepository.findAll();
+
+        return defectListRepository.findByBugId(defectId);
+    }
+
 }

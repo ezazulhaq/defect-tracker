@@ -15,4 +15,6 @@ public interface DefectListService {
 
     void removeDefect(Long id);
 
+    List<DefectList> getDefectList(Long defectId);
+
 }
