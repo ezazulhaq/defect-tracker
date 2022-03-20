@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WelcomeController {
@@ -33,6 +34,31 @@ public class WelcomeController {
             dList = defectListService.getDefectList();
         else
             dList = defectListService.getDefectList()
+                    .stream()
+                    .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
+                    .collect(Collectors.toList());
+
+        theModel.addAttribute("defectList", dList);
+
+        return "home";
+    }
+
+    @GetMapping(value = "/searchId")
+    public String getMethodName(@RequestParam(value = "search") String search, Model theModel) {
+
+        if (search.equalsIgnoreCase(""))
+            search = "0";
+
+        List<DefectList> dList;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        boolean authorized = auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"));
+
+        if (authorized)
+            dList = defectListService.getDefectList(Long.valueOf(search));
+        else
+            dList = defectListService.getDefectList(Long.valueOf(search))
                     .stream()
                     .filter(i -> i.getAssignedTo().equalsIgnoreCase(auth.getName()))
                     .collect(Collectors.toList());
