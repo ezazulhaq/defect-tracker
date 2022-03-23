@@ -9,7 +9,7 @@
     <div class="container">
         <h2 class="my-3">Dashboard</h2>
 
-        <form th:action="@{/searchId}" method="get">
+        <form th:action="@{/search/searchId}" method="get">
             <div class="input-group my-3" style="width: 250px;">
                 <input type="text" th:name="search" class="form-control mr-1" placeholder="Search With Defect ID">
                 <button type="submit" class="btn btn-secondary bi bi-search"></button>
@@ -20,27 +20,27 @@
             <thead class="thead-dark">
                 <th class="col col-sm-2">
                     Defect ID
-                    <a th:href="@{/sortByDefectId}" class="btn btn-secondary btn-sm">
+                    <a th:href="@{/search/sortByDefectId}" class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
                 <th>Description</th>
                 <th class="col col-sm-2">
                     Assigned To
-                    <a sec:authorize="hasRole('MANAGER')" th:href="@{/sortByAssignedTo}"
+                    <a sec:authorize="hasRole('MANAGER')" th:href="@{/search/sortByAssignedTo}"
                         class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
                 <th class="col col-sm-2">
                     Project
-                    <a th:href="@{/sortByProject}" class="btn btn-secondary btn-sm">
+                    <a th:href="@{/search/sortByProject}" class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
                 <th class="col col-sm-2">
                     Status
-                    <a th:href="@{/sortByStatus}" class="btn btn-secondary btn-sm">
+                    <a th:href="@{/search/sortByStatus}" class="btn btn-secondary btn-sm">
                         <span class="bi bi-caret-down-fill"></span>
                     </a>
                 </th>
