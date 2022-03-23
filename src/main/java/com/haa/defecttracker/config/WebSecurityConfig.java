@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .authenticated()
                 .antMatchers(staticResources)
                 .permitAll()
+                .antMatchers("/favicon.ico").permitAll()
                 .antMatchers("/").hasRole("EMPLOYEE")// saveDefect
                 .antMatchers("/search/**").hasRole("EMPLOYEE")
                 .antMatchers("/updateDefect/**").hasRole("EMPLOYEE")
