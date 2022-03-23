@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(staticResources)
                 .permitAll()
                 .antMatchers("/").hasRole("EMPLOYEE")// saveDefect
+                .antMatchers("/search/**").hasRole("EMPLOYEE")
                 .antMatchers("/updateDefect/**").hasRole("EMPLOYEE")
                 .antMatchers("/saveDefect").hasRole("EMPLOYEE")
                 .antMatchers("/**").hasRole("MANAGER")
